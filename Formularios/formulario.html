@@ -12,5 +12,7 @@
         </div>
     </div>
 
-    <button (click)="emiter()">teste</button>
+    <div *ngFor='let botao of listaDeBotoes'>
+        <button class="{{botao.classStyle}}" (click)="emiter(botao.nome)">{{botao.nome}}</button>
+    </div>
 </form>

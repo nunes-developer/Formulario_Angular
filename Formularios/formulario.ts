@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { InputModel } from "./Inputs/inputs.model";
 import { FormGroup, FormControl } from "@angular/forms";
+import { BotoesModel } from "./Botoes/botoes.model";
 
 @Component({
     selector: 'formulario',
@@ -12,14 +13,10 @@ export class Formularios implements OnInit {
     formulario: FormGroup;
     @Input() classForm: string;
     @Input() inputs: InputModel[];
-    @Output() event = new EventEmitter();
-
-    @Input() listaTeste: any[] = []
+    @Input() listaDeBotoes: BotoesModel[];
     
-
     ngOnInit(): void {
         this.formulario = this.construirFormGroup(this.inputs);
-        console.log(this.listaTeste)
     }
 
     construirFormGroup(inputs: InputModel[]): FormGroup {
@@ -86,7 +83,7 @@ export class Formularios implements OnInit {
         });
     }
 
-    emiter(){
-        this.listaTeste[0].acao.emit();
+    emiter(botao: string){
+        this.listaDeBotoes.find(x => x.nome == botao).funcao();
     }
 }
